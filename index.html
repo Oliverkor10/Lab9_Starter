@@ -46,6 +46,14 @@
         width: 122px;
       }
     </style>
+    <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+<script>
+  window.TrackJS && TrackJS.install({ 
+    token: "a74b6dc6a92645ee8374333108a33d42"
+    // for more configuration options, see https://docs.trackjs.com
+  });
+</script>
+                        
   </head>
 
   <body>
@@ -84,11 +92,13 @@
         <button id="startTimer" onclick="timeStart()">Start Timer</button>
         <button id="endTimer" onclick="timeStop()">End Timer</button>
         <button id="trace" onclick="console.trace()">Console Trace</button>
-        <button id="globalError">Trigger a Global Error</button>
+        <button id="globalError" onclick="globalError()">Trigger a Global Error</button>
       </section>
     </main>
-
+ 
+    
     <script>
+      TrackJS.track('Testing TrackJS!');
       let form = document.querySelector("form");
       form.addEventListener("submit", (e) => {
         try {
@@ -177,6 +187,10 @@
       }
       function timeStop() {
         console.timeEnd("Time Button");
+      }
+
+      function globalError() {
+        throw new CustomError("Woahhhhhh");
       }
     </script>
   </body>
